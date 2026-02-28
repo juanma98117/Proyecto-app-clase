@@ -59,7 +59,6 @@ class Categoria {
   CIENCIA
   DEPORTE
   ARTE
-}
 
 Preguntados --> BancoPreguntas
 BancoPreguntas "1" o-- "*" Pregunta
