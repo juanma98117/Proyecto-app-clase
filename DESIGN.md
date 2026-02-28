@@ -1,6 +1,7 @@
 classDiagram
 direction TB
 
+```mermaid
 %% =========================
 %% MODELO (LOGICA)
 %% =========================
@@ -206,3 +207,4 @@ class ControladorJuego {
 ControladorJuego --> Juego
 ControladorJuego --> VistaJuego
 VentanaPrincipal --> ControladorJuego
+``` 
