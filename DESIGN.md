@@ -27,10 +27,6 @@ class MotorJuego {
   + ejecutarJuego()
 }
 
-MotorJuego --> Juego
-Juego --> Jugador
-}
-
 %% =========================
 %% PREGUNTADOS
 %% =========================
