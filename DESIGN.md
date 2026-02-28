@@ -85,7 +85,7 @@ class Carton {
   + marcarNumero(int)
   + hayLinea()
   + hayBingo()
-}
+
 
 class GeneradorNumeros {
   - List~int~ numerosDisponibles
