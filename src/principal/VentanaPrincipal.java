@@ -6,96 +6,89 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JPanel;
 
-import minijuego.ImagenVentanaPrincipal;
-import minijuego.MusicaFondo;
+import vista.ImagenVentanaPrincipal;
+import vista.MusicaFondo;
+import vista.PanelBingo;
 
-public class VentanaPrincipal extends JPanel{
+public class VentanaPrincipal extends JFrame {
 
-	public static void main(String[] args) {
+    private MusicaFondo fondo;
 
-		// Crear ventana
+    public VentanaPrincipal() {
 
-		//Creamos el JFrame que nos har� de ventana
-		JFrame ventana = new JFrame("MINIJUEGOS");
+        // Configuración básica de la ventana
+        setTitle("MINIJUEGOS");
+        
+        //Ajustar el tamaño de la ventana
+        setSize(800, 600);
+        
+        //Cerrar todos los procesos
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        
+        //Posicionarlo en mitad de la pantalla
+        setLocationRelativeTo(null);
 
-		//Le damos un tama�o a nuestra ventana
-		ventana.setSize(800, 600);
+        // Panel con imagen de fondo
+        ImagenVentanaPrincipal imagen = new ImagenVentanaPrincipal();
+        
+        imagen.setLayout(null);
+        setContentPane(imagen);
 
-		//Detiene todos los procesos al cerrar la ventana
-		ventana.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // BOTÓN 1
+        JButton boton = new JButton("Bingo");
+        
+        //Dimensiones
+        boton.setBounds(100, 400, 100, 50);
+        boton.setBackground(Color.BLACK);
+        imagen.add(boton);
 
-		//Centra la ventana a la pantalla
-		ventana.setLocationRelativeTo(null);
+        boton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("¡Bingo iniciado!");
+                new PanelBingo();
+            }
+        });
 
-		//Ponemos la ventana visible
-		ventana.setVisible(true);
+        // BOTÓN 2
+        JButton boton2 = new JButton("PREGUNTA2");
+        boton2.setBounds(300, 400, 100, 50);
+        boton2.setBackground(Color.BLACK);
+        imagen.add(boton2);
 
-		//Creamos un panel con la imagen
-		ImagenVentanaPrincipal imagen = new ImagenVentanaPrincipal();
-		imagen.setLayout(null);
-		ventana.setContentPane(imagen); 
+        boton2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Botón 2 pulsado");
+            }
+        });
 
+        // BOTÓN 3
+        JButton boton3 = new JButton("ARKANOID");
+        boton3.setBounds(500, 400, 100, 50);
+        boton3.setBackground(Color.BLACK);
+        imagen.add(boton3);
 
-		//Creamos el primer botón
-		JButton boton = new JButton("Botón");
-		boton.setBounds(100, 400, 100, 50);
-		boton.setBackground(Color.BLACK);
-		imagen.add(boton); 
+        boton3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                System.out.println("Botón 3 pulsado");
+            }
+        });
 
-		boton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("¡Botón pulsado!");
-			}
-		});
+        // Música de fondo
+        fondo = new MusicaFondo("/resource/CancionFondo.wav");
+        fondo.playLoop();
 
+        // Detener música al cerrar
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent e) {
+                fondo.stop();
+            }
+        });
 
-		//Creamos el segundo botón
-		JButton boton2 = new JButton("Botón");
-		boton2.setBounds(300, 400, 100, 50);
-		boton2.setBackground(Color.BLACK);
-		imagen.add(boton2); 
-
-		boton2.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("¡Botón pulsado!");
-			}
-		});
-
-		//Creamos el tercer botón
-		JButton boton3 = new JButton("Botón");
-		boton3.setBounds(500, 400, 100, 50);
-		boton3.setBackground(Color.BLACK);
-		imagen.add(boton3); 
-
-		boton3.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				System.out.println("¡Botón pulsado!");
-			}
-		});
-		// Establecer el panel como contenido de la ventana
-		ventana.setContentPane(imagen);
-
-		// Música de fondo
-		MusicaFondo fondo = new MusicaFondo("/sonidos/CancionFondo.wav");
-		fondo.playLoop();
-
-		// Detener al cerrar ventana
-		ventana.addWindowListener(new java.awt.event.WindowAdapter() {
-		    @Override
-		    public void windowClosing(java.awt.event.WindowEvent e) {
-		        fondo.stop();
-		    }
-		});
-
-
-
-	}
-
+        setVisible(true);
+    }
 }
-
-

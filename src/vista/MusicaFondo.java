@@ -1,4 +1,4 @@
-package minijuego;
+package vista;
 
 import javax.sound.sampled.*;
 import java.io.IOException;
