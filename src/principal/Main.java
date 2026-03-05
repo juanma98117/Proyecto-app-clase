@@ -1,5 +1,6 @@
 package principal;
 
+import vista.VentanaPrincipal;
 
 public class Main {
 

@@ -1,27 +1,25 @@
-package principal;
+package vista;
 
-import java.awt.Color;
+import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-
-import vista.ImagenVentanaPrincipal;
-import vista.MusicaFondo;
-import vista.PanelBingo;
+import javax.swing.JPanel;
 
 public class VentanaPrincipal extends JFrame {
 
     private MusicaFondo fondo;
-
+    private JButton boton;
+    
     public VentanaPrincipal() {
 
         // Configuración básica de la ventana
         setTitle("MINIJUEGOS");
         
         //Ajustar el tamaño de la ventana
-        setSize(800, 600);
+        setSize(1000, 800);
         
         //Cerrar todos los procesos
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -32,51 +30,39 @@ public class VentanaPrincipal extends JFrame {
         // Panel con imagen de fondo
         ImagenVentanaPrincipal imagen = new ImagenVentanaPrincipal();
         
+        //Prohibir el botón maximizar
+        setResizable(false);
+
+        
         imagen.setLayout(null);
         setContentPane(imagen);
 
         // BOTÓN 1
-        JButton boton = new JButton("Bingo");
+        boton = new JButton();
+        boton.setBounds(347, 567, 291, 170);
         
-        //Dimensiones
-        boton.setBounds(100, 400, 100, 50);
-        boton.setBackground(Color.BLACK);
-        imagen.add(boton);
-
+        //Hago el boton invisible
+        //Le quito el bordeado al botón
+        boton.setBorderPainted(false);
+        
+        //Le quito el color de fondo al botón
+        boton.setContentAreaFilled(false);
+        
+        getContentPane().add(boton);
+        
+        JPanel panel = new JPanel();
+        panel.setBounds(509, 480, 9, 9);
+        imagen.add(panel);
         boton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("¡Bingo iniciado!");
-                new PanelBingo();
+            	
+                System.out.println("¡Menú iniciado!");
+                new SegundoPanel();
             }
         });
 
-        // BOTÓN 2
-        JButton boton2 = new JButton("PREGUNTA2");
-        boton2.setBounds(300, 400, 100, 50);
-        boton2.setBackground(Color.BLACK);
-        imagen.add(boton2);
-
-        boton2.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Botón 2 pulsado");
-            }
-        });
-
-        // BOTÓN 3
-        JButton boton3 = new JButton("ARKANOID");
-        boton3.setBounds(500, 400, 100, 50);
-        boton3.setBackground(Color.BLACK);
-        imagen.add(boton3);
-
-        boton3.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Botón 3 pulsado");
-            }
-        });
-
+        
         // Música de fondo
         fondo = new MusicaFondo("/resource/CancionFondo.wav");
         fondo.playLoop();
